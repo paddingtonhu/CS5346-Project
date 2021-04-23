@@ -1,0 +1,182 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  margin: 20px;
+  border-color:black;
+  border-style: solid;
+  border-width: 3px;
+}
+
+.data_table{
+  margin-top: 25px;
+  width: 800px;
+}
+
+
+.query2 {
+  text-align: left;
+  margin-top: 25px;
+  margin-left:85px;
+  font-size: 16px;
+}
+
+.upimage {
+  padding-top:10px;
+  height:150px;
+  width:150px;
+  border-radius: 50%;
+  overflow:hidden;
+}
+
+.table.image {
+  width: 50px;
+  height: 50px;
+  display:block;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 65px;
+  margin-top:60px;
+}
+
+
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  table-layout: fixed;
+}
+
+.upwordcloud {
+  padding-left:100px;
+  height:1000px;
+}
+
+.updata {
+  padding-top:130px;
+}
+
+.item1.no1 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom:0px;
+  background-color: ;
+}
+
+.item1.no2 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom:0px;
+  background-color: #a1e7ff;
+}
+
+.item1.no3 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom:0px;
+  background-color: #ff8faf;
+}
+
+.item1.no4 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom:0px;
+  background-color: #8FDBDB;
+}
+
+.item1.no5 {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom:0px;
+  background-color: #ACBFEA;
+}
+
+
+
+.item2 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.item4 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  padding-top: 10px;
+}
+
+.item5 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+
+
+.ui.vertical.basic.segment.banner{
+  height: 500px;
+  background: url('image/bili.jpeg');
+  background-size:cover;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 100px;
+  background-position:center;
+  position:relative;
+}
+
+.grid-container {
+  display: grid;
+}
+
+.ui.inverted.button.project{
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.ui.vertical.basic.segment.vedioup{
+  margin-top: 200px;
+}
+
+.member{
+  margin-top: 20px;
+}
+
+
+
+.five.wide.column.CODE{
+  box-sizing: border-box;
+  height: 250px;
+  width: 80px;
+  background-color: black;
+  background-size:cover;
+  margin-left: 30px;
+  margin-bottom: 50px;
+}
+
+.five.wide.column.viz2{
+  box-sizing: border-box;
+  height: 250px;
+  width: 80px;
+  background-color: black;
+  background-size:cover;
+  margin-left: 10px;
+  margin-bottom: 50px;
+}
+
+.five.wide.column.up{
+  box-sizing: border-box;
+  height: 250px;
+  width: 80px;
+  background-color: black;
+  background-size:cover;
+  margin-left: 10px;
+  margin-bottom: 50px;
+}
+
+.ui.header.inverted.center.aligned.research{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  margin: 0;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Word Frequency and Sentiment of Audience of Bilibili</title>
+    <link href="css/style_viz1_2.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/7cb4dbb2f6.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ECharts.js -->
+    <script src="scripts/echarts.js"></script>
+    <script src="scripts/echarts-wordcloud.js"></script>
+    <script src="scripts/word_frequency_viz2.js"></script>
+
+    <!-- Tableau JavaScript API-->
+    <script
+      type="text/javascript"
+      src="https://public.tableau.com/javascripts/api/tableau-2.min.js"
+    ></script>
+  </head>
+
+  <body onload="initViz();">
+    <div class="main">
+      <div class="title">
+        <div class="bililogo" onclick="window.open('index.html','_self')"></div>
+        <div class="icon">
+          <a
+            href="viz1.html"
+            title="Backward"
+            id="btn_backward"
+            style="color: rgb(28 166 219)"
+          >
+            <i class="fas fa-backward"></i
+          ></a>
+          <span
+            title="Movie Category"
+            style="color: rgb(28 166 219)"
+            id="btn_movie"
+          >
+            <i class="fas fa-film"></i
+          ></span>
+          <span
+            title="Life Category"
+            style="color: rgb(28 166 219)"
+            id="btn_life"
+          >
+            <i class="fas fa-suitcase-rolling"></i
+          ></span>
+          <span
+            title="Game Category"
+            style="color: rgb(28 166 219)"
+            id="btn_game"
+          >
+            <i class="fas fa-chess-knight"></i>
+          </span>
+          <a
+            href="viz3.html"
+            title="Forward"
+            id="btn_forward"
+            style="color: rgb(28 166 219)"
+          >
+            <i class="fas fa-forward"></i
+          ></a>
+        </div>
+        <p class="intro">
+          Instead of the total playback volume, top videos in official rankings of each category were ranked by the human-intervened recommendation (like "Editor's Choice"), which may reveal the operator's preference and values. Word frequency and sentiment of audience of bullet chats in the top 1 video of Movie, Life and Game category were visualized respectively. Click icons above or the filter in Tableau to switch!
+        </p>
+      </div>
+
+      <div
+        class="wordcloud"
+        id="wordcloud"
+        style="width: 375px; height: 250px"
+      ></div>
+      <script type="text/javascript">
+        let VIZ = undefined;
+
+        function initViz(cate = "Movie") {
+          try {
+            VIZ.dispose();
+          } catch (e) {
+            console.error(e);
+          }
+          var containerDiv = document.getElementById("vizContainer"),
+            url =
+              "https://public.tableau.com/views/SentimentofAudienceofBilibili/SentimentScoresofTopVideosonBilibili",
+            options = {
+              width: 1420,
+              height: 550,
+              hideToolbar: true,
+              Category: cate,
+              onFirstInteractive: function () {
+                workbook = viz.getWorkbook();
+                activeSheet = workbook.getActiveSheet();
+              },
+            };
+          var viz = new tableau.Viz(containerDiv, url, options);
+
+          viz.addEventListener(
+            tableau.TableauEventName.FILTER_CHANGE,
+            async (e) => {
+              const filter = await e.getFilterAsync();
+              const value = filter.getAppliedValues()[0].value;
+              console.log("click on category: ", value);
+              if (value == "Movie") {
+                renderEchart();
+              }
+              if (value == "Life") {
+                renderEchart(originDataLife);
+              }
+              if (value == "Game") {
+                renderEchart(originDataGame);
+              }
+            }
+          );
+          VIZ = viz;
+        }
+
+        const renderEchart = (data = originDataMovie, top = 10) => {
+          data = data.sort((a, b) => b.value - a.value);
+          const ctr = document.getElementById("wordcloud");
+          var chart = echarts.init(ctr);
+          var data = data.map((val, idx) => ({
+            ...val,
+            textStyle: {
+              normal: {
+                color: biColor(val, idx),
+              },
+            },
+          }));
+          function biColor(val, idx) {
+            // const threshold = 20;
+            // return val["value"] > threshold
+            return idx < top ? `rgb(203,64,66)` : "rgb(150,150,150)";
+          }
+          chart.setOption({
+            tooltip: {},
+            series: [
+              {
+                type: "wordCloud",
+                shape: "pentagon",
+                width: 375,
+                height: 250,
+                sizeRange: [10, 35],
+                rotationRange: [-90, 90],
+                gridSize: 6,
+                drawOutOfBound: true,
+                textStyle: {
+                  normal: {
+                    fontFamily: "sans-serif",
+                    fontWeight: "normal",
+                  },
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: "#333",
+                  },
+                },
+                data,
+              },
+            ],
+          });
+
+          window.onresize = chart.resize;
+        };
+
+        renderEchart();
+
+        document.getElementById("btn_movie").addEventListener("click", (e) => {
+          renderEchart();
+          initViz("Movie");
+        });
+        document.getElementById("btn_life").addEventListener("click", (e) => {
+          renderEchart(originDataLife);
+          initViz("Life");
+        });
+        document.getElementById("btn_game").addEventListener("click", (e) => {
+          renderEchart(originDataGame);
+          initViz("Game");
+        });
+      </script>
+
+      <div class="line"></div>
+
+      <div class="tableau">
+        <div id="vizContainer"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+body { 
+  margin: 0 auto 0 auto;
+  /* background-image: url("../images/"); */
+  background-color: #ffffff;
+  font-family: "Raleway", sans-serif;
+}
+
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.main {
+  padding: 20px 50px 10px 50px;
+}
+
+.title {
+  display: inline-block;
+  position: relative;
+  height: 250px;
+}
+
+.bililogo {
+  padding: 0 0 10px 0;
+  position: relative;
+  height: 100px;
+  width: 250px;
+  background-image: url("../img/bilibili.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.icon {
+  width: 50%;
+  height: 40px;
+  margin: 10px 500px 10px 0;
+  font-size: 35px;
+}
+
+.icon a {
+  margin: 0 12px 0 0;
+}
+
+.icon span {
+  margin: 0 15px 0 0;
+}
+
+.intro {
+  width: 55%;
+  height: 40px;
+  margin: 0 500px 0 0;
+  padding: 10px 0 0 0;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.wordcloud {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  height: 250px;
+  width: 375px;
+}
+
+.line {
+  margin: 20px 0 0 0;
+  border-top: 0.5px solid black;
+}
+
+.tableau {
+  display: inline-block;
+}
+
+.tableau_viz1 {
+  display: inline-block;
+  position: absolute;
+  left: 340px;
+  padding: 0 0 0 30px;
+  border-left: 0.5px solid black;
+}

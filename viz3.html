@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile of the Top 1 Video Uploader at each Category</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" /
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="css/grid2.css">
+    <script src="scripts/echarts.js"></script>
+    <script src="scripts/echarts-wordcloud.min.js"></script>
+    <script src="scripts/echarts-wordcloud.js"></script>
+    <script src="data.js"></script>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/7cb4dbb2f6.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ECharts.js -->>
+    <script src="scripts/word_frequency_viz3.js"></script>
+
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="item1 no2">
+        <div class="aboutup">
+          <img src="img/shengse.jpg" alt="" class="upimage">
+          <h3>声瑟潦草</h3>
+          <a href="https://space.bilibili.com/2091186606" target="_blank">
+          uid: 2091186606
+          </a>
+          <p>Category：Movie  &nbsp;&nbsp;   Gender：Confidential<br>
+             Level：5  &nbsp;&nbsp;   Attribute：Junior
+          </p>
+        </div>
+
+      </div>
+      <div class="item2">
+        <table style="width:100%" class='updata'>
+          <tr>
+            <th>
+              <img src="img/tele.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/like.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/share.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/view.png" alt="" class='table image'>
+            </th>
+          </tr>
+          <tr>
+            <td>Number of Videos<br><b>48</b></td>
+            <td>Like<br><b>5.7 m</b></td>
+            <td>Favorite<br><b>3.18 m</b></td>
+            <td>Share<br><b>0.53 m</b></td>
+          </tr>
+        </table>
+
+      </div>
+      <div class="item3">
+        <div class="plain text">
+          <h3>Popular Bullet Chats</h3>
+          <p>Data from the bullet chats of all videos from the video uploader</p>
+        </div>
+        <div id="wordcloud2" style="width: 600px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var chart = echarts.init(document.getElementById('wordcloud2'));
+            var originData = [{"name":"Wu Xie","value":368},{"name":"Like","value":315},{"name":"Pretty","value":205},{"name":"sensation","value":193},{"name":"follow-up","value":185},{"name":"notebook","value":182},{"name":"A Ning","value":182},{"name":"Bro","value":168},{"name":"Wife","value":165},{"name":"remake","value":153},{"name":"Cute","value":145},{"name":"Zi Xuan","value":129},{"name":"acting skill ","value":115},{"name":"original work","value":111},{"name":"Tan Yan","value":105},{"name":"The Legend of Sword and Fairy","value":104},{"name":"Actor","value":101},{"name":"up","value":97},{"name":"video","value":92},{"name":"role","value":85},{"name":"ultimate","value":81},{"name":"plot","value":69},{"name":"so cute","value":68},{"name":"innocent","value":68},{"name":"eyes","value":60},{"name":"dogge","value":56},{"name":"fierce","value":52},{"name":"hope","value":52},{"name":"Oh my god","value":46},{"name":"classic","value":46},{"name":"bgm","value":44},{"name":"happy birthday","value":43},{"name":"rob a tomb","value":43},{"name":"restart","value":43},{"name":"smooth","value":40},{"name":"pretty","value":39},{"name":"home page","value":38},{"name":"seem","value":38},{"name":"face score","value":36},{"name":"sequel","value":35},{"name":"wife","value":35},{"name":"Liu Yifei","value":35},{"name":"truth","value":35}]
+
+            var data = originData.map((val) => ({
+              ...val,
+              textStyle: {
+                normal: {
+                  color: randomColor(val)
+                },
+              },
+            }));
+
+            function randomColor(val) {
+              const threshold = 200;
+              return val["value"] > threshold
+                ? `#03a5dd`
+                : "rgb(100,100,100)";
+            }
+
+            var option = {
+                 tooltip: {},
+                 series: [
+                   {
+                     type: "wordCloud",
+                     shape: "pentagon",
+                     width: 600,
+                     height: 400,
+                     sizeRange: [12, 60],
+                     rotationRange: [-90, 90],
+                     gridSize: 6,
+                     drawOutOfBound: true,
+                     textStyle: {
+                       normal: {
+                         fontFamily: "sans-serif",
+                         fontWeight: "normal",
+                       },
+                       emphasis: {
+                         shadowBlur: 10,
+                         shadowColor: "#333",
+                       },
+                     },
+                     data,
+                   },
+                 ],
+               }
+
+               chart.setOption(option);
+               window.onresize = chart.resize;
+        </script>
+      </div>
+      <div class="item4">
+        <div class="plain text">
+          <h3>Top Comments</h3>
+          <p>Data from the comments of all videos of the video uploader</p>
+        </div>
+          <div id="bar2" style="width: 600px;height:400px;"></div>
+          <script type="text/javascript">
+              var mybarChart = echarts.init(document.getElementById('bar2'));
+
+              // 指定图表的配置项和数据
+              var option = {
+
+                  tooltip: {},
+                  legend: {
+                      data:['Number']
+                  },
+                  xAxis: {
+                      data: ["Wu Xie","Like","Pretty","Sensation","follow-up","notebook","A Ning","bro","wife","remake"],
+                      axisLabel:{
+                        interval:0,//横轴信息全部显示
+                        rotate:-45,
+                      },
+                  },
+                  yAxis: {},
+                  series: [{
+                      name: 'Number',
+                      type: 'bar',
+                      itemStyle:{
+                                    normal:{
+                                        color:'#03a5dd'
+                                    }
+                                },
+                      data: [368,315,205,193,185,182,182,168,165,153],
+                  }]
+              };
+
+              // 使用刚指定的配置项和数据显示图表。
+              mybarChart.setOption(option);
+
+         </script>
+
+      </div>
+      <div class="item5">
+        <div class="plain text">
+          <h3>Last 10 Video Performances of This Uploader</h3>
+        </div>
+        <div id="zfzx2" style="width:1300px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+          var chartDom = document.getElementById('zfzx2');
+          var myChart = echarts.init(chartDom);
+          var option;
+
+          var colors = ['#03a5dd', '#91CC75', '#EE6666', '#FFA400'];
+
+          option = {
+              color: colors,
+
+              tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                      type: 'cross'
+                  }
+              },
+              grid: {
+                  right: '20%'
+              },
+              toolbox: {
+                  feature: {
+                      dataView: {show: true, readOnly: false},
+                      restore: {show: true},
+                      saveAsImage: {show: true}
+                  }
+              },
+              legend: {
+                  data: ['Playback Vol', 'Like', 'Favorite', 'Comment'],
+                  itemGap: 30
+              },
+              xAxis: [
+                  {
+                      type: 'category',
+                      name: "Date (Year:2021)",
+                      nameLocation: "middle",
+                      nameTextStyle: {
+                            padding: 12
+                          },
+                      axisTick: {
+                          alignWithLabel: true
+                      },
+                      data: ["0212","0215","0216","0219","0226","0305","0312","0317","0319","0322"]
+                  }
+              ],
+              yAxis: [
+                  {
+                      type: 'value',
+                      name: 'Playback Vol',
+                      min: 0,
+                      max: 500000,
+                      position: 'left',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[0]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Like',
+                      min: 0,
+                      max: 100000,
+                      position: 'right',
+                      offset: 80,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[1]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Comment',
+                      min: 0,
+                      max: 6000,
+                      position: 'right',
+                      offset: 160,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[3]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Favorite',
+                      min: 0,
+                      max: 80000,
+                      position: 'right',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[2]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value}'
+                      }
+                  }
+              ],
+              series: [
+                  {
+                      name: 'Playback Vol',
+                      type: 'bar',
+                      data: [22549,46425,1038,1393,2475,10629,3809,20134,486532,1795]
+                  },
+                  {
+                      name: 'Like',
+                      type: 'line',
+                      yAxisIndex: 1,
+                      smooth:true,
+                      data: [2027,6203,43,73,114,1904,207,2039,94965,109]
+                  },
+                  {
+                      name: 'Favorite',
+                      type: 'line',
+                      yAxisIndex: 3,
+                      smooth:true,
+                      data: [807,3716,22,19,33,823,53,948,71192,12]
+                  },
+                  {
+                      name: 'Comment',
+                      type: 'line',
+                      yAxisIndex: 2,
+                      smooth:true,
+                      data: [105,521,21,5,37,60,46,145,5843,18]
+                  }
+              ]
+          };
+
+          option && myChart.setOption(option);
+          </script>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="item1 no3">
+        <div class="aboutup">
+          <img src="img/papi.jpg" alt="" class="upimage">
+          <h3>Papi酱</h3>
+          <a href="https://space.bilibili.com/1532165" target="_blank">
+          uid: 1532165
+          </a>
+          <p>Category：Life  &nbsp;&nbsp;   Gender：Confidential<br>
+             Level：5  &nbsp;&nbsp;   Attribute：Junior
+          </p>
+        </div>
+
+      </div>
+      <div class="item2">
+        <table style="width:100%" class='updata'>
+          <tr>
+            <th>
+              <img src="img/tele.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/like.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/share.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/view.png" alt="" class='table image'>
+            </th>
+          </tr>
+          <tr>
+            <td>Number of videos<br><b>207</b></td>
+            <td>Like<br><b>135.18 m</b></td>
+            <td>Favorite<br><b>29.44 m</b></td>
+            <td>Share<br><b>21.17 m</b></td>
+          </tr>
+        </table>
+
+      </div>
+      <div class="item3">
+        <div class="plain text">
+          <h3>Popular Bullet Chats</h3>
+          <p>Data from the bullet chats of all videos from the video uploader</p>
+        </div>
+        <div id="wordcloud3" style="width: 600px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            // 基于准备好的dom，初始化echarts实例
+            var chart = echarts.init(document.getElementById('wordcloud3'));
+            var originData = [{"name":"papi","value":4796},{"name":"video","value":2887},{"name":"Like","value":1263},{"name":"bullet chats","value":1104},{"name":"advertise","value":951},{"name":"update","value":944},{"name":"real","value":864},{"name":"sensation","value":771},{"name":"kid","value":741},{"name":"mom","value":600},{"name":"teacher","value":592},{"name":"mooncake","value":547},{"name":"congratulation","value":456},{"name":"comment","value":438},{"name":"relative","value":415},{"name":"cellphone","value":389},{"name":"thing","value":378},{"name":"discover","value":362},{"name":"game","value":361},{"name":"fan","value":352},{"name":"aunt","value":327},{"name":"hope","value":325},{"name":"Tik Tok","value":321},{"name":"red bag","value":306},{"name":"pa","value":302},{"name":"Sina Weibo","value":300},{"name":"idol","value":293},{"name":"my mom","value":291},{"name":"pretty","value":288},{"name":"awkward","value":284},{"name":"spring Festival","value":275},{"name":"celebrity","value":268},{"name":"not good","value":254},{"name":"delicious","value":250},{"name":"National College Entrance Examination","value":249},{"name":"up","value":238},{"name":"parent","value":238},{"name":"friend","value":219},{"name":"satire","value":218},{"name":"traditional Chinese rice-pudding","value":218},{"name":"variety show","value":205},{"name":"boss","value":200},{"name":"ky","value":197},{"name":"hamburger","value":192},{"name":"come back","value":184},{"name":"hot","value":180},{"name":"pregnant","value":180},{"name":"likely","value":179},{"name":"Papi","value":174},{"name":"disgusting","value":172}]
+
+            var data = originData.map((val) => ({
+              ...val,
+              textStyle: {
+                normal: {
+                  color: randomColor(val)
+                },
+              },
+            }));
+
+            function randomColor(val) {
+              const threshold = 500;
+              return val["value"] > threshold
+                ? `#fb7299`
+                : "rgb(100,100,100)";
+            }
+
+            var option = {
+                 tooltip: {},
+                 series: [
+                   {
+                     type: "wordCloud",
+                     shape: "pentagon",
+                     width: 600,
+                     height: 400,
+                     sizeRange: [12, 60],
+                     rotationRange: [-90, 90],
+                     gridSize: 6,
+                     drawOutOfBound: true,
+                     textStyle: {
+                       normal: {
+                         fontFamily: "sans-serif",
+                         fontWeight: "normal",
+                       },
+                       emphasis: {
+                         shadowBlur: 10,
+                         shadowColor: "#333",
+                       },
+                     },
+                     data,
+                   },
+                 ],
+               }
+
+               chart.setOption(option);
+               window.onresize = chart.resize;
+
+        </script>
+      </div>
+      <div class="item4">
+        <div class="plain text">
+          <h3>Top Comments</h3>
+          <p>Data from the comments of all videos of the video uploader</p>
+        </div>
+          <div id="bar3" style="width: 600px;height:400px;"></div>
+          <script type="text/javascript">
+              var mybarChart = echarts.init(document.getElementById('bar3'));
+
+              // 指定图表的配置项和数据
+              var option = {
+
+                  tooltip: {},
+                  legend: {
+                      data:['Number']
+                  },
+
+
+                  xAxis: {
+                      type : 'category',
+                      data: ["papi","video","like","chats","advertise","updata","real","sensation","kid","mom"],
+                      axisLabel:{
+                        interval:0,//横轴信息全部显示
+                        rotate:-45,
+                      },
+                  },
+
+                  yAxis: {},
+                  series: [{
+                      name: 'Number',
+                      type: 'bar',
+                      itemStyle:{
+                                    normal:{
+                                        color:'#ff8faf'
+                                    }
+                                },
+                      data: [4796,2887,1263,1104,951,944,864,771,741,600],
+                  }]
+              };
+
+              // 使用刚指定的配置项和数据显示图表。
+              mybarChart.setOption(option);
+
+         </script>
+      </div>
+      <div class="item5">
+        <div class="plain text">
+          <h3>Last 10 Video Performances of This Uploader</h3>
+        </div>
+        <div id="zfzx3" style="width:1300px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+          var chartDom = document.getElementById('zfzx3');
+          var myChart = echarts.init(chartDom);
+          var option;
+
+          var colors = ['#ff8faf', '#91CC75', '#EE6666', '#FFA400'];
+
+          option = {
+              color: colors,
+
+              tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                      type: 'cross'
+                  }
+              },
+              grid: {
+                  right: '20%'
+              },
+              toolbox: {
+                  feature: {
+                      dataView: {show: true, readOnly: false},
+                      restore: {show: true},
+                      saveAsImage: {show: true}
+                  }
+              },
+
+              legend: {
+                  data: ['Playback Vol', 'Like', 'Favorite', 'Comment'],
+                  itemGap: 30
+              },
+              xAxis: [
+                  {
+                      type: 'category',
+                      name: "Date (Year:2021)",
+                      nameLocation: "middle",
+                      nameTextStyle: {
+                            padding: 12
+                          },
+                      axisTick: {
+                          alignWithLabel: true
+                      },
+                      data: ["0212","0215","0216","0219","0226","0305","0312","0314","0319","0322"]
+                  }
+              ],
+
+
+              yAxis: [
+                  {
+                      type: 'value',
+                      name: 'Playback Vol',
+                      min: 0,
+                      max: 3500000,
+                      position: 'left',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[0]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Like',
+                      min: 0,
+                      max: 350000,
+                      position: 'right',
+                      offset: 80,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[1]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Comment',
+                      min: 0,
+                      max: 7000,
+                      position: 'right',
+                      offset: 160,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[3]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Favorite',
+                      min: 0,
+                      max: 27000,
+                      position: 'right',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[2]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value}'
+                      }
+                  }
+              ],
+              series: [
+                  {
+                      name: 'Playback Vol',
+                      type: 'bar',
+                      data: [2120204,3341401,1284980,2398906,2707602,2345441,1786967,1902311,3462151,1165712]
+                  },
+                  {
+                      name: 'Like',
+                      type: 'line',
+                      yAxisIndex: 1,
+                      smooth:true,
+                      data: [205621,336363,100436,179401,199870,198840,196973,252411,304294,150135]
+                  },
+                  {
+                      name: 'Favorite',
+                      type: 'line',
+                      yAxisIndex: 3,
+                      smooth:true,
+                      data: [10646,21793,11032,9321,8324,9337,12975,25021,20870,11016]
+                  },
+                  {
+                      name: 'Comment',
+                      type: 'line',
+                      yAxisIndex: 2,
+                      smooth:true,
+                      data: [1843,6023,1411,1970,1675,2794,3611,4427,3974,2257]
+                  }
+              ]
+          };
+
+          option && myChart.setOption(option);
+          </script>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="item1 no4">
+        <div class="aboutup">
+          <img src="img/tomato.jpg" alt="" class="upimage">
+          <h3>老番茄</h3>
+          <a href="https://space.bilibili.com/546195" target="_blank">
+          uid: 546195
+          </a>
+          <p>Category：Game &nbsp;&nbsp;    Gender：Confidential<br>
+             Level：5  &nbsp;&nbsp;   Attribute：Junior
+          </p>
+        </div>
+
+      </div>
+      <div class="item2">
+        <table style="width:100%" class='updata'>
+          <tr>
+            <th>
+              <img src="img/tele.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/like.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/share.png" alt="" class='table image'>
+            </th>
+            <th>
+              <img src="img/view.png" alt="" class='table image'>
+            </th>
+          </tr>
+          <tr>
+            <td>Number of videos<br><b>360</b></td>
+            <td>Like<br><b>925.76 m</b></td>
+            <td>Favorite<br><b>256.15 m</b></td>
+            <td>Share<br><b>44.01 m</b></td>
+          </tr>
+        </table>
+      </div>
+      <div class="item3">
+        <div class="plain text">
+          <h3>Popular Bullet Chats</h3>
+          <p>Data from the bullet chats of all videos from the video uploader</p>
+        </div>
+        <div id="wordcloud4" style="width:600px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+
+             var chart = echarts.init(document.getElementById('wordcloud4'));
+             var originData = [{"name":"tomato","value":10834},{"name":"video","value":4956},{"name":"game","value":3116},{"name":"up","value":1426},{"name":"comment","value":1217},{"name":"fan","value":1162},{"name":"advertise","value":1155},{"name":"bullet chat","value":1067},{"name":"update","value":919},{"name":"like","value":865},{"name":"hope","value":627},{"name":"sensation","value":582},{"name":"ice-fire","value":570},{"name":"killer","value":557},{"name":"hot","value":449},{"name":"study","value":399},{"name":"good bro","value":370},{"name":"discover","value":365},{"name":"China","value":346},{"name":"forest","value":326},{"name":"title","value":320},{"name":"hot comment","value":304},{"name":"breakup","value":298},{"name":"bro","value":292},{"name":"series","value":272},{"name":"boy","value":267},{"name":"time","value":258},{"name":"FuDan","value":252},{"name":"quality","value":245},{"name":"plot","value":242}]
+
+             var data = originData.map((val) => ({
+               ...val,
+               textStyle: {
+                 normal: {
+                   color: randomColor(val)
+                 },
+               },
+             }));
+
+             function randomColor(val) {
+               const threshold = 1000;
+               return val["value"] > threshold
+                 ? `#8FDBDB`
+                 : "rgb(100,100,100)";
+             }
+
+             var option = {
+                  tooltip: {},
+                  series: [
+                    {
+                      type: "wordCloud",
+                      shape: "pentagon",
+                      width: 600,
+                      height: 400,
+                      sizeRange: [12, 60],
+                      rotationRange: [-90, 90],
+                      gridSize: 6,
+                      drawOutOfBound: true,
+                      textStyle: {
+                        normal: {
+                          fontFamily: "sans-serif",
+                          fontWeight: "normal",
+                        },
+                        emphasis: {
+                          shadowBlur: 10,
+                          shadowColor: "#333",
+                        },
+                      },
+                      data,
+                    },
+                  ],
+                }
+
+                chart.setOption(option);
+                window.onresize = chart.resize;
+
+        </script>
+      </div>
+      <div class="item4">
+        <div class="plain text">
+          <h3>Top Comments</h3>
+          <p>Data from the comments of all videos of the video uploader</p>
+        </div>
+          <div id="bar4" style="width: 600px;height:400px;"></div>
+          <script type="text/javascript">
+              var mybarChart = echarts.init(document.getElementById('bar4'));
+
+              // 指定图表的配置项和数据
+              var option = {
+
+                  tooltip: {},
+                  legend: {
+                      data:['Number']
+                  },
+                  xAxis: {
+                      type : 'category',
+                      data: ["tomato","video","game","up","comment","fan","advertise","bullet chat","update","like"],
+                      axisLabel:{
+                        interval:0,//横轴信息全部显示
+                        rotate:-45,
+                      },
+                  },
+
+
+                  yAxis: {},
+                  series: [{
+                      name: 'Number',
+                      type: 'bar',
+                      itemStyle:{
+                                    normal:{
+                                        color:'#8FDBDB'
+                                    }
+                                },
+                      data: [10834,4956,3116,1426,1217,1162,1155,1067,919,865],
+                  }]
+              };
+
+              // 使用刚指定的配置项和数据显示图表。
+              mybarChart.setOption(option);
+         </script>
+      </div>
+      <div class="item5">
+        <div class="plain text">
+          <h3>Last 10 Video Performances of This Uploader</h3>
+        </div>
+        <div id="zfzx4" style="width:1300px;height:400px;" class="upwordcloud"></div>
+        <script type="text/javascript">
+          var chartDom = document.getElementById('zfzx4');
+          var myChart = echarts.init(chartDom);
+          var option;
+
+          var colors = ['#8FDBDB', '#91CC75', '#EE6666', '#FFA400'];
+
+          option = {
+              color: colors,
+
+              tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                      type: 'cross'
+                  }
+              },
+              grid: {
+                  right: '20%'
+              },
+              toolbox: {
+                  feature: {
+                      dataView: {show: true, readOnly: false},
+                      restore: {show: true},
+                      saveAsImage: {show: true}
+                  }
+              },
+              legend: {
+                  data: ['Playback Vol', 'Like', 'Favorite', 'Comment'],
+                  itemGap: 30
+              },
+              xAxis: [
+                  {
+                      type: 'category',
+                      name: "Date (Year:2021)",
+                      nameLocation: "middle",
+                      nameTextStyle: {
+                            padding: 12
+                          },
+                      axisTick: {
+                          alignWithLabel: true
+                      },
+                      data: ["0212","0215","0216","0219","0226","0305","0312","0314","0319","0322"]
+                  }
+              ],
+              yAxis: [
+                  {
+                      type: 'value',
+                      name: 'Playback Vol',
+                      min: 0,
+                      max: 8000000,
+                      position: 'left',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[0]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Like',
+                      min: 0,
+                      max: 1300000,
+                      position: 'right',
+                      offset: 80,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[1]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Comment',
+                      min: 0,
+                      max: 30000,
+                      position: 'right',
+                      offset: 160,
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[3]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value} '
+                      }
+                  },
+                  {
+                      type: 'value',
+                      name: 'Favorite',
+                      min: 0,
+                      max: 500000,
+                      position: 'right',
+                      axisLine: {
+                          show: true,
+                          lineStyle: {
+                              color: colors[2]
+                          }
+                      },
+                      axisLabel: {
+                          formatter: '{value}'
+                      }
+                  }
+              ],
+              series: [
+                  {
+                      name: 'Playback Vol',
+                      type: 'bar',
+                      data: [6861276,5350983,3429378,3360619,7643904,3087044,3348521,2307222,4695689,1372796]
+                  },
+                  {
+                      name: 'Like',
+                      type: 'line',
+                      yAxisIndex: 1,
+                      smooth:true,
+                      data: [1126536,322872,410098,305422,1273996,299620,252369,239631,659537,134215]
+                  },
+                  {
+                      name: 'Favorite',
+                      type: 'line',
+                      yAxisIndex: 3,
+                      smooth:true,
+                      data: [265700,55420,46999,37602,467379,60163,26811,23762,189965,13101]
+                  },
+                  {
+                      name: 'Comment',
+                      type: 'line',
+                      yAxisIndex: 2,
+                      smooth:true,
+                      data: [16803,7484,9850,9321,22527,4611,3519,8049,8831,3833]
+                  }
+              ]
+          };
+          option && myChart.setOption(option);
+          </script>
+      </div>
+  </div>
+
+
+  </body>
+</html>
